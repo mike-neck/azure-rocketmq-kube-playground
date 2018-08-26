@@ -1,0 +1,14 @@
+FROM openjdk:8-slim
+
+ENV ROCKETMQ_VERSION 4.3.0
+ENV ROCKETMQ_HOME /rocketmq
+
+RUN \
+  apt-get update && \
+  apt-get install -y curl && \
+  curl -L -O http://ftp.meisei-u.ac.jp/mirror/apache/dist/rocketmq/${ROCKETMQ_VERSION}/rocketmq-all-${ROCKETMQ_VERSION}-bin-release.zip && \
+  unzip rocketmq-all-${ROCKETMQ_VERSION}-bin-release.zip && \
+  mv rocketmq-all-${ROCKETMQ_VERSION}-bin-release rocketmq && \
+  sed -i -e "s/Xms8g/Xms2g/g" -e "s/Xmx8g/Xmx2g/g" -e "s/Xmn4g/Xmn1g/g" $ROCKETMQ_HOME/bin/runbroker.sh && \
+  sed -i -e "s/Xms4g/Xms1g/g" -e "s/Xmx4g/Xmx1g/g" -e "s/Xmn2g/Xmn500m/g" $ROCKETMQ_HOME/bin/runserver.sh
+

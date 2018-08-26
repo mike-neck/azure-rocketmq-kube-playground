@@ -1,0 +1,10 @@
+FROM mikeneck/rocketmq:4.3.0
+
+COPY ./name-server.sh /name-server.sh
+
+RUN chmod 744 /name-server.sh
+
+EXPOSE 9876
+
+CMD ["/name-server.sh"]
+

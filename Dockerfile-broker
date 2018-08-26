@@ -1,0 +1,8 @@
+FROM mikeneck/rocketmq:4.3.0
+
+COPY ./broker.sh /broker.sh
+
+RUN chmod 744 /broker.sh
+
+CMD ["/broker.sh"]
+
