@@ -4,5 +4,7 @@ COPY ./broker.sh /broker.sh
 
 RUN chmod 744 /broker.sh
 
+EXPOSE 10911
+
 CMD ["/broker.sh"]
 
